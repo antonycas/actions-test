@@ -1,9 +1,14 @@
 name: Deployment Exercise One
-on: push
+on:
+  pull_request:
+    types: [opened]
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Output Event
+        run: echo "${{ github.event }}"
       - name: Get Code
         uses: actions/checkout@v3
       - name: Install dependencies
